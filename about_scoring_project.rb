@@ -31,6 +31,40 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  sum = 0
+  if dice == []
+    return 0
+  end
+  
+  values = Hash.new(0) #hash of dice rolls, about_hashes.rb -> give a default value for keys to make counting easier
+
+  dice.each do |roll| #get the dice roll and how often they occur
+    values[roll] += 1
+  end
+
+  #calculate the scores
+  values.each do |roll, freq|
+    if roll == 1 && freq >= 3 #I used && instead of & and it fixed the error
+      sum += 1000
+      freq -= 3
+    end
+
+    if roll != 1 && freq >= 3
+      sum += 100 * roll
+      freq -= 3
+    end
+
+    if roll == 1 && freq <= 2
+      sum += 100 * freq
+    end
+
+    if roll == 5 && freq <= 2
+      sum += 50 * freq
+    end
+
+  end
+
+  return sum
 end
 
 class AboutScoringProject < Neo::Koan
