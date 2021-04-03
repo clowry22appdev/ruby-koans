@@ -4,6 +4,18 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
  class DiceSet
    #code ...
+   attr_accessor :values #should be an array
+
+   def roll(n) 
+      @values = Array.new
+      i = 0
+      while i < n
+        random_roll = rand(5) + 1 #random number between 1 and 6
+        @values.push(random_roll)
+        i+= 1
+      end
+    end
+   
  end
 
 class AboutDiceProject < Neo::Koan
