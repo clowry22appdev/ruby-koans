@@ -14,6 +14,15 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  #write the errors here
+  if ((a <= 0) | (b <= 0) | (c <= 0))
+    raise TriangleError, "Can't have lengths less than or equal to 0"
+  end
+
+  if ((a + b <= c) | (b + c <= a) | (a + c <= b))
+    raise TriangleError, "Any 2 sides must sum greater than 3rd side" 
+  end
+
   # WRITE THIS CODE
   if ((a == b) & (b == c) & (a == c))
     return :equilateral
