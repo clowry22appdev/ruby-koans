@@ -87,10 +87,10 @@ class AboutMessagePassing < Neo::Koan
   def test_calling_method_missing_causes_the_no_method_error
     typical = TypicalObject.new
 
-    exception = assert_raise(___) do
+    exception = assert_raise(NoMethodError) do
       typical.method_missing(:foobar)
     end
-    assert_match(/foobar/, exception.message)
+    assert_match(/method_missing/, exception.message)
 
     # THINK ABOUT IT:
     #
